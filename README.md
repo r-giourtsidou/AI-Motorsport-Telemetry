@@ -66,7 +66,7 @@ AI-Motorsport-Telemetry/
 
 ## Long-Term Goal
 
-Develop an AI-assisted motorsport teleemtry analysis tool capable of supporting performance engineers by analysing driver behaviour and identifying opportunities for lap time improvement.
+Develop an AI-assisted motorsport telemetry analysis tool capable of supporting performance engineers by analysing driver behaviour and identifying opportunities for lap time improvement.
 
 ---
 
