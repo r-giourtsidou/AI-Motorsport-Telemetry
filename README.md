@@ -55,8 +55,8 @@ AI-Motorsport-Telemetry/
 - [x] Load telemetry data
 - [x] Plot Speed vs Distance
 - [x] Create telemetry dashboard
-- [ ] Driver comparison 
-- [ ] Corner detection
+- [x] Driver comparison 
+- [x] Corner detection
 - [ ] Lap time comparison 
 - [ ] Machine Learning models
 - [ ] AI-assisted performance engineer
