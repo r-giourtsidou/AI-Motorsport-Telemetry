@@ -28,6 +28,10 @@ This project also documents my transition from Quantum Computing research to Art
   - Throttle vs Distance 
   - Brake vs Distance
 - Automatically save generated figures
+- Compare telemetry between two drivers
+- Visualize the circuit using telemetry position data
+- Color the circuit by vehicle speed
+- Detect and group corner candidates using speed and track geometry
 
 ---
 
