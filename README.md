@@ -2,6 +2,12 @@
 
 ![Telemetry Dashboard](figures/hamilton_telemetry_dashboard.png)
 
+## Track Visualization
+
+The telemetry position data can also be used to visualize the circuit and explore how vehicle speed changes around the lap.
+
+![Monza Speed Map](figures/monza_speed_map.png)
+
 ## Project Overview
 
 AI-Motorsport-Telemetry is a personal motorport engineering project focused on Formula 1 telemetry analysis and AI-assisted performance engineering.
