@@ -87,5 +87,10 @@ plt.title("Monza Track Map")
 plt.axis("equal")
 plt.grid(True) 
 plt.legend()
+plt.savefig("figures/monza_speed_map.png",
+            dpi = 300,
+            bbox_inches = "tight")
+
+
 plt.show()
 
