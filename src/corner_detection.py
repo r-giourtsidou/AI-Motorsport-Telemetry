@@ -182,6 +182,95 @@ for center in group_centers:
     group_center_indices.append(idx)
 
 
+
+
+# Check vehicle speed at each geometry group center
+
+print("\nGeometry group centers and speeds:")
+
+for center in group_centers:
+    idx = np.argmin(np.abs(distance - center))
+
+
+    print(f"Distance: {center:.0f} m | "
+          f"Speed: {speed[idx]:.1f} km/h")
+
+
+# Check net heading change around each geometry group center
+
+window_distance = 100
+
+print("\nNet heading change around geometry groups:")
+
+for center in group_centers:
+
+    mask = (
+        (distance_geometry >= center - window_distance) 
+        & (distance_geometry <= center + window_distance))
+
+    net_heading_change = np.sum(smoothed_heading_change[mask])
+
+    print(f"Distance: {center:.0f} m | "
+          f"Net heading change: {net_heading_change:.3f} rad")
+    
+
+
+
+
+print("\nTotal heading change around geometry groups:")
+
+total_heading_changes = []
+
+for center in group_centers:
+
+    mask = (
+        (distance_geometry >= center - window_distance)
+        & (distance_geometry <= center + window_distance)
+    )
+
+    total_heading_change = np.sum(
+        np.abs(smoothed_heading_change[mask])
+    )
+
+    total_heading_changes.append(total_heading_change)
+
+    print(
+        f"Distance: {center:.0f} m | "
+        f"Total heading change: {total_heading_change:.3f} rad"
+    )
+
+    turning_threshold = 0.4
+
+    filtered_group_centers = []
+
+    for center, total_change in zip(
+        group_centers,
+        total_heading_changes):
+
+        if total_change >= turning_threshold:
+            filtered_group_centers.append(center)
+
+    print("\nFiltered geometry groups:")
+
+for center in filtered_group_centers:
+    print(f"{center:.0f} m")
+
+
+filtered_group_indices = []
+
+for center in filtered_group_centers:
+
+    idx = np.argmin(
+        np.abs(distance_geometry - center)
+    )
+
+    filtered_group_indices.append(idx)
+
+filtered_group_indices.append(idx)
+
+
+
+
 # Geometry coordinates corresponding to heading_change
 x_geometry = x[2:]
 y_geometry = y[2:]
@@ -282,5 +371,48 @@ plt.axis("equal")
 plt.title("Grouped Geometry Regions on Track")
 plt.legend()
 plt.grid(True)
+
+plt.show()
+
+
+
+
+# Figure Filtered Geometry Regions on Track
+
+plt.figure(figsize=(8, 8))
+
+plt.plot(x, y)
+
+plt.scatter(
+    x_geometry[filtered_group_indices],
+    y_geometry[filtered_group_indices],
+    marker = "o",
+    s = 100,
+    label = "Filtered geometry groups"
+)
+
+plt.axis("equal")
+plt.title("Filtered Geometry Regions on Track")
+plt.legend()
+plt.grid(True)
+
+plt.show()
+
+
+plt.plot(distance_geometry,
+         turning_intensity,
+         label="Turning intensity")
+
+plt.scatter(distance_geometry[filtered_group_indices],
+            turning_intensity[filtered_group_indices],
+            marker="o",
+            s=80,
+            label="Filtered geometry centers")
+
+plt.xlabel("Distance (m)")
+plt.ylabel("Turning intensity (rad)")
+plt.title("Filtered Geometry Centers vs Turning Intensity")
+plt.grid(True)
+plt.legend()
 
 plt.show()
